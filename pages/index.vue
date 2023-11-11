@@ -6,7 +6,9 @@ definePageMeta({
 
 <template>
     <div>
-        <h1>index page</h1>
+        <div>
+            <FormSearchVaga />
+        </div>
     </div>
 </template>
   
