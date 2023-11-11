@@ -1,0 +1,12 @@
+<script setup lang="ts">
+definePageMeta({
+  layout: 'guest'
+})
+</script>
+
+<template>
+    <div>
+        <h1>index page</h1>
+    </div>
+</template>
+  
