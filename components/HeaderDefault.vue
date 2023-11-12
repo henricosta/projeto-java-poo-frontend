@@ -11,7 +11,7 @@
                     </div>
                     <!-- Navigation Links -->
                     <div class="flex items-center">
-                        <NuxtLink to="/">Entrar</NuxtLink>
+                        <NuxtLink to="/" class="mr-3">Buscar vagas</NuxtLink>
                         <NuxtLink to="/register/empresa">Para empresas</NuxtLink>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="flex items-center mr-8">
                     <div>
                         <NuxtLink to="/login/candidato">Entrar</NuxtLink>
-                        <NuxtLink to="/register/candidato">Cadastre-se</NuxtLink>
+                        <NuxtLink to="/register/candidato" class="ml-3 border bg-gray-900 text-white rounded-md px-3 py-2">Cadastre-se</NuxtLink>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
                     </div>
                     <!-- Navigation Links -->
                     <div class="flex items-center">
-                        <NuxtLink to="/">Buscar vagas</NuxtLink>
+                        <NuxtLink to="/" class="mr-3">Buscar vagas</NuxtLink>
                         <NuxtLink to="/">Minhas vagas</NuxtLink>
                     </div>
                 </div>
