@@ -1,7 +1,9 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
     layout: 'candidato'
 })
+const route = useRoute()
+const { data: candidato } = await useFetch("http://localhost:8080/candidatos/" + route.params.id + "/profile")
 </script>
 
 <template>
@@ -12,10 +14,9 @@ definePageMeta({
                 <span class="font-medium text-gray-600 dark:text-gray-300">JL</span>
             </div>
             <div>
-                <div class="mb-3 text-4xl font-extrabold dark:text-white">Nome Completo</div>
+                <div class="mb-3 text-4xl font-extrabold dark:text-white">{{ candidato.name }}</div>
                 <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
-                    <li>email@email.com</li>
-                    <li>9999999999</li>
+                    <li>{{ candidato.email }}</li>
                 </ul>
             </div>
         </Section>
@@ -28,7 +29,8 @@ definePageMeta({
             </div>
             <div>
                 <ul class="space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                    <li class="hover:bg-gray-100 flex items-center justify-between py-1 px-3 rounded-lg w-full"
+                    <li v-for="c in candidato.competencias"
+                        class="hover:bg-gray-100 flex items-center justify-between py-1 px-3 rounded-lg w-full"
                         style="text-transform: capitalize">
                         <p>nome da competencia</p>
                         <button class="border py-1 px-3 rounded-lg hover:bg-red-600 hover:text-white">Deletar</button>
@@ -44,13 +46,13 @@ definePageMeta({
                     formação</button>
             </div>
             <div>
-                <div>
+                <div v-for="f in candidato.formacoes">
                     <hr>
                     <div class="flex items-center justify-between mt-2">
-                        <h1 class="text-xl">Instituicao</h1>
+                        <h1 class="text-xl">{{ f.institution }}</h1>
                         <button class="px-3 py-1 text-sm bg-gray-300 rounded-md hover:bg-gray-400">Editar</button>
                     </div>
-                    <div class="mb-2 mt-2 text-gray-700">descricao da formacao</div>
+                    <div class="mb-2 mt-2 text-gray-700">{{ f.description }}</div>
                 </div>
             </div>
         </Section>

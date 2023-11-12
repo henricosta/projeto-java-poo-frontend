@@ -1,7 +1,9 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
-  layout: 'empresa'
+    layout: 'candidato'
 })
+const route = useRoute()
+const { data: empresa } = await useFetch("http://localhost:8080/empresas/" + route.params.id + "/profile")
 </script>
 
 <template>
@@ -15,13 +17,12 @@ definePageMeta({
         </svg>
       </div>
       <div class="flex items-center">
-        <div class="mb-3 text-4xl font-extrabold dark:text-white">Nome da empresa</div>
+        <div class="mb-3 text-4xl font-extrabold dark:text-white">{{ empresa.name }}</div>
         <button class="ml-4 mb-2 py-2 px-3 rounded-md border bg-gray-200 shadow-sm text-sm hover:bg-gray-400">Editar
           informações</button>
       </div>
       <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
-        <li>email@email.com</li>
-        <li>9999999999</li>
+        <li>{{ empresa.email }}</li>
       </ul>
     </Section>
     <Section class="mr-8">
