@@ -28,6 +28,12 @@ async function searchJobs(title, type) {
     jobs.value = data.content
 }
 
+const currentJob = ref(jobs.value[0])
+
+function updateCurrentPageJob(job) {
+    currentJob.value = job
+}
+
 </script>
 
 <template>
@@ -37,10 +43,10 @@ async function searchJobs(title, type) {
         </div>
         <div v-if="jobs.length > 0" class="flex justify-center">
             <div class="w-1/3 max-h-screen overflow-auto">
-                <CardVaga v-for="j in jobs" :key="j.id" :job="j" />
+                <CardVaga v-for="j in jobs" :key="j.id" :job="j" @click="() => updateCurrentPageJob(j)" />
             </div>
             <div class="w-1/2">
-                <PageVaga :job="jobs[0]" />
+                <PageVaga :job="currentJob"/>
             </div>
         </div>
         <div v-else class="flex justify-center">
