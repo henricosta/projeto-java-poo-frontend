@@ -17,10 +17,11 @@ jobs.value = data.content
 // Funcão feita para ser passada como props para outros componentes
 // Atualiza a lista usando o ref jobs
 async function searchJobs(title, type) {
-    alert(title)
+    
     const { data } = await axios.get(apiBase + '/jobs/list', {
         params: {
-            title: title,
+            title: title || null,
+            type: type == 'Modalidade' ? null : type 
         }
     })
 
