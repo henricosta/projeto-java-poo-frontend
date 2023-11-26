@@ -1,10 +1,14 @@
 <script setup>
-defineProps({
-    searchJobsFunction: Function
-})
-const title = ref('')
-const type = ref('')
 
+const { searchJobsFunction } = defineProps(['searchJobsFunction']);
+
+const title = ref('')
+const type = ref('0')
+
+function resetFilters() {
+    type.value = '0'
+    searchJobsFunction(title.value, type.vlue)
+}
 </script>
 
 <template>
@@ -16,12 +20,12 @@ const type = ref('')
             </div>
         </div>
         <div class="border-t shadow-sm bg-gray-50 py-4 flex justify-center">
-            <button class="rounded-full border border-gray-800 hover:bg-gray-700 text-white bg-gray-800 px-5 mr-5">Redefinir filtros</button>
-            <select class="py-2 mx-2 border px-2 rounded-full">
+            <button @click="resetFilters" class="rounded-full border border-gray-800 hover:bg-gray-700 text-white bg-gray-800 px-5 mr-5">Redefinir filtros</button>
+            <!-- <select class="py-2 mx-2 border px-2 rounded-full">
                 <option value="0" disabled selected>Cidade</option>
-            </select>
+            </select> -->
             <select @change="() => searchJobsFunction(title, type)" v-model="type" class="py-2 mx-2 border px-2 rounded-full">
-                <option value="Modalidade" disabled selected>Modalidade</option>
+                <option value="0" disabled selected>Modalidade</option>
                 <option value="Presencial">Presencial</option>
                 <option value="Remoto">Remoto</option>
             </select>
