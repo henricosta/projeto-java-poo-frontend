@@ -1,9 +1,22 @@
 <script setup>
+import axios from 'axios';
+
 definePageMeta({
     layout: 'candidato'
 })
+const { apiBase } = useRuntimeConfig().public
 const route = useRoute()
-const { data: candidato } = await useFetch("http://localhost:8080/candidatos/" + route.params.id + "/profile")
+
+const candidate = ref({})
+
+const { data } = await axios.get(apiBase + '/candidates/details', {
+    params: {
+        candidate_id: route.params.id
+    }
+})
+
+candidate.value = data
+
 </script>
 
 <template>
@@ -14,9 +27,9 @@ const { data: candidato } = await useFetch("http://localhost:8080/candidatos/" +
                 <span class="font-medium text-gray-600 dark:text-gray-300">JL</span>
             </div>
             <div>
-                <div class="mb-3 text-4xl font-extrabold dark:text-white">{{ candidato.name }}</div>
+                <div class="mb-3 text-4xl font-extrabold dark:text-white">{{ candidate.name }}</div>
                 <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
-                    <li>{{ candidato.email }}</li>
+                    <li>{{ candidate.email }}</li>
                 </ul>
             </div>
         </Section>
@@ -28,14 +41,17 @@ const { data: candidato } = await useFetch("http://localhost:8080/candidatos/" +
                     competência</button>
             </div>
             <div>
-                <ul class="space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                    <li v-for="c in candidato.competencias"
+                <!-- <ul class="space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                    <li v-for="c in data.content.skills"
                         class="hover:bg-gray-100 flex items-center justify-between py-1 px-3 rounded-lg w-full"
                         style="text-transform: capitalize">
                         <p>nome da competencia</p>
                         <button class="border py-1 px-3 rounded-lg hover:bg-red-600 hover:text-white">Deletar</button>
                     </li>
-                </ul>
+                    <div>
+                        <p>Nenhuma competência adicionada</p>
+                    </div>
+                </ul> -->
             </div>
         </Section>
         <Section>
@@ -46,13 +62,13 @@ const { data: candidato } = await useFetch("http://localhost:8080/candidatos/" +
                     formação</button>
             </div>
             <div>
-                <div v-for="f in candidato.formacoes">
+                <div v-for="e in candidate.educationList">
                     <hr>
                     <div class="flex items-center justify-between mt-2">
-                        <h1 class="text-xl">{{ f.institution }}</h1>
+                        <h1 class="text-xl">{{ e.institution }}</h1>
                         <button class="px-3 py-1 text-sm bg-gray-300 rounded-md hover:bg-gray-400">Editar</button>
                     </div>
-                    <div class="mb-2 mt-2 text-gray-700">{{ f.description }}</div>
+                    <div class="mb-2 mt-2 text-gray-700">{{ e.description }}</div>
                 </div>
             </div>
         </Section>
