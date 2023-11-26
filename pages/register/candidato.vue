@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from 'axios';
-
+// TODO: Change layout based on authentication
 definePageMeta({
   layout: 'guest'
 })
@@ -23,9 +23,9 @@ async function postCandidateRegister() {
 }
 </script>
 
-<template>
+<template>  
   <div class="flex justify-center items-center mt-14">
-    <Section class="w-96">
+    <Section class="w-96 rounded-md p-6">
       <h1 class="text-2xl mb-3"><strong>Criar conta</strong></h1>
       <form @submit.prevent>
         <div>
@@ -45,8 +45,8 @@ async function postCandidateRegister() {
 
         <div class="flex items-center justify-end mt-4">
           <NuxtLink to="/login/candidato"
-            class="ml-4 bg-gray-100 px-2 py-1 rounded-md border text-black hover:bg-gray-200 ">Já tem conta?</NuxtLink>
-          <button class="ml-4" @click="postCandidateRegister">
+            class="ml-4 px-2 py-1  text-blue-500 underline ">Entrar</NuxtLink>
+          <button class="ml-4 border rounded-md px-3 py-2 hover:bg-gray-800 hover:text-white" @click="postCandidateRegister">
             Criar conta
           </button>
         </div>

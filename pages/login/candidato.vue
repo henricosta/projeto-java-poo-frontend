@@ -19,7 +19,7 @@ async function sendLoginRequest() {
   if (request.status == 200) {
     const { token } = request.data
     // TODO: Set to local storage
-    console.log(token) 
+    console.log(token)
     // localStorage.setItem('token', token)
   }
 
@@ -31,7 +31,7 @@ async function sendLoginRequest() {
 
 <template>
   <div class="flex justify-center">
-    <Section class="w-3/12">
+    <Section class="w-3/12 mt-16 rounded-md p-8">
       <h1 class="text-2xl mb-3"><strong>Login</strong></h1>
       <form @submit.prevent>
         <div>
@@ -45,10 +45,10 @@ async function sendLoginRequest() {
         </div>
 
         <div class="flex items-center justify-end mt-4">
-          <NuxtLink to="/register/candidato"
-            class="ml-4 bg-gray-100 px-2 py-1 rounded-md border text-black hover:bg-gray-200 ">Cadastrar-se</NuxtLink>
-          <button @click="sendLoginRequest" class="ml-4">
-            Log in
+          <NuxtLink to="/register/candidato" class="ml-4 px-2 py-1  text-blue-500 underline ">Cadastrar-se</NuxtLink>
+          <button class="ml-4 border rounded-md px-3 py-2 hover:bg-gray-800 hover:text-white"
+            @click="sendLoginRequest">
+            Entrar
           </button>
         </div>
       </form>

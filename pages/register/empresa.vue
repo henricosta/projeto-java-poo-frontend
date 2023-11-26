@@ -1,49 +1,52 @@
 <script setup lang="ts">
+import axios from 'axios';
+// TODO: Change layout based on authentication
 definePageMeta({
   layout: 'guest'
 })
+
+const { apiBase } = useRuntimeConfig().public
+
+const name = ref('')
+const email = ref('')
+const password = ref('')
+
+async function postCompanyRegister() {
+  console.log(name, email, password)
+  const response = await axios.post(apiBase + '/auth/register/company', {
+    name: name.value,
+    email: email.value,
+    password: password.value
+  })
+
+  console.log(response)
+}
 </script>
 
 <template>
   <div class="flex justify-center">
-    <Section class="w-2/6">
-      <h1 class="text-3xl mb-6" id="titulo">Cadastre a sua empresa</h1>
+    <Section class="w-2/6 mt-16 p-8">
+      <h1 class="text-2xl mb-6" id="titulo">Cadastre a sua empresa</h1>
       <form @submit.prevent>
         <div>
-          <label for="nome_empresa">Nome da empresa</label>
-          <input id="nome_empresa" type="text" class="mt-1 block w-full border">
+          <label for="name">Nome da empresa</label>
+          <input v-model="name" id="name" type="text" class="mt-1 block w-full border">
         </div>
-        <div class="flex justify-between mt-4">
-          <div>
-            <label for="cnpj">CNPJ</label>
-            <input id="cnpj" type="text" class="mt-1 block w-full border">
-          </div>
-          <div>
-            <label for="cep">CEP da Empresa</label>
-            <input id="cep" type="text" class="mt-1 block w-full border">
-          </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input v-model="email" id="email" type="text" class="mt-1 block w-full border">
         </div>
-        <div class="flex justify-between mt-4">
-          <div>
-            <label for="email">Email</label>
-            <input id="email" type="text" class="mt-1 block w-full border">
-          </div>
-          <div>
-            <label for="phone">Telefone</label>
-            <input id="phone" type="text" class="mt-1 block w-full border">
-          </div>
-        </div>
+
         <div>
           <label for="password">Senha</label>
-          <input id="password" type="text" class="mt-1 block w-full border">
+          <input v-model="password" id="password" type="password" class="mt-1 block w-full border">
         </div>
         <div class="flex items-center justify-end mt-4">
-          <NuxtLink
-            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            to="/login/empresa">Já possui registro?</NuxtLink>
-
-          <button class="ml-4">
-            Registrar empresa
+          <NuxtLink to="/login/empresa"
+            class="ml-4 px-2 py-1  text-blue-500 underline ">Entrar</NuxtLink>
+          <button class="ml-4 border rounded-md px-3 py-2 hover:bg-gray-800 hover:text-white" @click="postCompanyRegister">
+            Cadastrar empresa
           </button>
         </div>
       </form>

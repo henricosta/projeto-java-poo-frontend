@@ -31,8 +31,8 @@ async function sendLoginRequest() {
 </script>
 
 <template>
-  <div class="flex justify-center items-center mt-14">
-    <Section>
+  <div class="flex justify-center items-center">
+    <Section class="w-3/12 mt-16 rounded-md p-8">
       <div>
         <h1 class="text-2xl mb-3"><strong>Entrar como empresa</strong></h1>
         <form @submit.prevent>
@@ -47,11 +47,9 @@ async function sendLoginRequest() {
           </div>
 
           <div class="flex items-center justify-end mt-4">
-            <button class="ml-4 bg-amber-50 border-2 border-black text-black">
-              <NuxtLink to="/register/empresa">Cadastrar-se</NuxtLink>
-            </button>
-            <button @click="sendLoginRequest" class="ml-4">
-              Login
+            <NuxtLink to="/register/empresa" class="ml-4 px-2 py-1  text-blue-500 underline ">Cadastrar-se</NuxtLink>
+            <button class="ml-4 border rounded-md px-3 py-2 hover:bg-gray-800 hover:text-white" @click="sendLoginRequest">
+              Entrar
             </button>
           </div>
         </form>

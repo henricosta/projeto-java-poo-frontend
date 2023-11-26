@@ -50,7 +50,7 @@ function updateCurrentPageJob(job) {
             </div>
         </div>
         <div v-else class="flex justify-center">
-            <h1 class="text-2xl mt-5">Nenhuma vaga encontrada</h1>
+            <h1 class="text-2xl mt-6 text-gray-600 ">Nenhuma vaga encontrada</h1>
         </div>
     </div>
 </template>
