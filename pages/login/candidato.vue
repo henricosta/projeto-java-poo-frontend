@@ -18,11 +18,12 @@ async function sendLoginRequest() {
 
   if (request.status == 200) {
     const { token } = request.data
-
-    localStorage.setItem('token', token)
+    // TODO: Set to local storage
+    console.log(token) 
+    // localStorage.setItem('token', token)
   }
 
-  console.log(localStorage.getItem('token'))
+  // console.log(localStorage.getItem('token'))
 }
 
 
