@@ -21,7 +21,7 @@ async function searchJobs(title, type) {
     const { data } = await axios.get(apiBase + '/jobs/list', {
         params: {
             title: title || null,
-            type: type == 'Modalidade' ? null : type 
+            type: type === '0' ? null : type 
         }
     })
 
