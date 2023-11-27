@@ -10,9 +10,13 @@ const { apiBase } = useRuntimeConfig().public;
 
 const jobs = ref([])
 
-// Primeiro carregamento da página
-const { data } = await axios.get(apiBase + '/jobs/list')
-jobs.value = data.content
+// Primeiro carregamento da 
+try {
+    const { data } = await axios.get(apiBase + '/jobs/list')
+    jobs.value = data.content
+} catch (e) {
+    jobs.value = []
+}
 
 // Funcão feita para ser passada como props para outros componentes
 // Atualiza a lista usando o ref jobs

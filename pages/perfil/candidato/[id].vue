@@ -9,13 +9,18 @@ const route = useRoute()
 
 const candidate = ref({})
 
-const { data } = await axios.get(apiBase + '/candidates/details', {
-    params: {
-        candidate_id: route.params.id
-    }
-})
+try {
+    const { data } = await axios.get(apiBase + '/candidates/details', {
+        params: {
+            candidate_id: route.params.id
+        }
+    })
+    candidate.value = data
+} catch (error) {
+    candidate.value = {}
+}
 
-candidate.value = data
+
 
 </script>
 

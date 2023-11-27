@@ -9,14 +9,18 @@ definePageMeta({
 const { apiBase } = useRuntimeConfig().public
 const route = useRoute()
 
-
 const company = ref({})
-const { data } = await axios.get(apiBase + '/companies/details', {
-  params: {
-    company_id: route.params.id
-  }
-})
-company.value = data
+try {
+  const { data } = await axios.get(apiBase + '/companies/details', {
+    params: {
+      company_id: route.params.id
+    }
+  })
+  company.value = data
+} catch (error) {
+  company.value = {}
+}
+
 // const { data: empresa } = await useFetch("http://localhost:8080/empresas/" + route.params.id + "/profile")
 </script>
 
