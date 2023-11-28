@@ -13,6 +13,5 @@ export default defineNuxtConfig({
     public: {
       apiBase: 'http://localhost:8080'
     }
-  },
-  ssr: false
+  }
 })
